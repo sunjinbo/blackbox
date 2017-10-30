@@ -1,0 +1,18 @@
+/* ====================================================================
+ * File: Blackbox.loc
+ * Author: Sun Jinbo
+ * Copyright (c): TietoEnator, All rights reserved
+ * ==================================================================== */
+
+#ifndef BLACKBOX_LOC
+#define BLACKBOX_LOC
+
+#ifdef LANGUAGE_SC // language code for Engine English
+#include "..\loc\00\Blackbox_00.loc"
+#else
+#include "..\loc\00\Blackbox_00.loc"
+#endif
+
+#endif // BLACKBOX_LOC
+
+// End of file

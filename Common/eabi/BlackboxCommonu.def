@@ -1,0 +1,47 @@
+EXPORTS
+	_ZN17CPropertyListener4NewLERK4TUidRKmR25MPropertyListenerCallBack @ 1 NONAME
+	_ZN17CPropertyListener5NewLCERK4TUidRKmR25MPropertyListenerCallBack @ 2 NONAME
+	_ZN17CPropertyListener6ListenEv @ 3 NONAME
+	_ZN17CPropertyListenerD0Ev @ 4 NONAME
+	_ZN17CPropertyListenerD1Ev @ 5 NONAME
+	_ZN17CPropertyListenerD2Ev @ 6 NONAME
+	_ZN19CPropertySubscriber10ConstructLEv @ 7 NONAME
+	_ZN19CPropertySubscriber4NewLEP17MPropertyObserverRK4TUidj @ 8 NONAME
+	_ZN19CPropertySubscriber9SubscribeEv @ 9 NONAME
+	_ZN19CScreenSaverBlocker34ActivateLightTimeoutAndScreenSaverEv @ 10 NONAME
+	_ZN19CScreenSaverBlocker36DeactivateLightTimeoutAndScreenSaverEv @ 11 NONAME
+	_ZN19CScreenSaverBlocker4NewLEv @ 12 NONAME
+	_ZN19CScreenSaverBlockerD0Ev @ 13 NONAME
+	_ZN19CScreenSaverBlockerD1Ev @ 14 NONAME
+	_ZN19CScreenSaverBlockerD2Ev @ 15 NONAME
+	_ZN20CRegistrationTimeout4NewLER16MTimeoutCallback @ 16 NONAME
+	_ZN20CRegistrationTimeout5StartEi @ 17 NONAME
+	_ZN20CRegistrationTimeoutD0Ev @ 18 NONAME
+	_ZN20CRegistrationTimeoutD1Ev @ 19 NONAME
+	_ZN20CRegistrationTimeoutD2Ev @ 20 NONAME
+	_ZN21CRepositorySubscriber10SubscribeLERKm @ 21 NONAME
+	_ZN21CRepositorySubscriber11SetObserverEP19MRepositoryObserver @ 22 NONAME
+	_ZN21CRepositorySubscriber11UnsubscribeERKm @ 23 NONAME
+	_ZN21CRepositorySubscriber4NewLERK4TUidP19MRepositoryObserver @ 24 NONAME
+	_ZN21CRepositorySubscriber8GetValueERKmR5TDes8 @ 25 NONAME
+	_ZN21CRepositorySubscriber8GetValueERKmR6TDes16 @ 26 NONAME
+	_ZN21CRepositorySubscriber8GetValueERKmRi @ 27 NONAME
+	_ZN21CRepositorySubscriber8SetValueERKmRK6TDesC8 @ 28 NONAME
+	_ZN21CRepositorySubscriber8SetValueERKmRK7TDesC16 @ 29 NONAME
+	_ZN21CRepositorySubscriber8SetValueERKmRKi @ 30 NONAME
+	_ZN21CRepositorySubscriberD0Ev @ 31 NONAME
+	_ZN21CRepositorySubscriberD1Ev @ 32 NONAME
+	_ZN21CRepositorySubscriberD2Ev @ 33 NONAME
+	_ZTI17CPropertyListener @ 34 NONAME ; #<TI>#
+	_ZTI19CPropertySubscriber @ 35 NONAME ; #<TI>#
+	_ZTI19CScreenSaverBlocker @ 36 NONAME ; #<TI>#
+	_ZTI20CRegistrationTimeout @ 37 NONAME ; #<TI>#
+	_ZTI21CRepositorySubscriber @ 38 NONAME ; #<TI>#
+	_ZTIN21CRepositorySubscriber25CCRepositorySubscriberKeyE @ 39 NONAME ; #<TI>#
+	_ZTV17CPropertyListener @ 40 NONAME ; #<VT>#
+	_ZTV19CPropertySubscriber @ 41 NONAME ; #<VT>#
+	_ZTV19CScreenSaverBlocker @ 42 NONAME ; #<VT>#
+	_ZTV20CRegistrationTimeout @ 43 NONAME ; #<VT>#
+	_ZTV21CRepositorySubscriber @ 44 NONAME ; #<VT>#
+	_ZTVN21CRepositorySubscriber25CCRepositorySubscriberKeyE @ 45 NONAME ; #<VT>#
+

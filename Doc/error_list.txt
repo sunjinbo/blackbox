@@ -1,0 +1,15 @@
+01. Some icons have white point;
+02. In unlimited rays mode, the max rays is 9, not 8; -->Fixed
+03. Some tips'illustration have defects and their update speed is too low; -->Ignore
+04. Flicker on game toolbar; -->Fixed
+05. Sometimes Toolbar still can be shown on welcome view; -->Fixed
+06. When you guessed all of mirrors, no congratulation note popup; -->Fixed
+07. Game view's settings can't update follow with settings' view -->Fixed
+08. Tips doesn't have memory function; -->Fixed
+09. The Number of nodes is not match with the settings; -->Fixed
+10. The Number of nodes can be more than 5 in easy mode; -->Fixed
+11. Checkbox setting page doesn't work on ARMV5;
+12. Part of Loading bitmap was cut on promo view;
+13. Welcome text was covered by buttons on some emulator;
+14. If no ray, flicker on game toolbar when put a guess star on scene;
+15. After update avater in settings, and then back to game, avater have a flicker;

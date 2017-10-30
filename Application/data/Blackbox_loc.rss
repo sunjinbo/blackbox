@@ -1,0 +1,27 @@
+// ====================================================================
+// File: Blackbox_loc.rss
+// Created: 09/04/10
+// Author: Sun Jinbo
+// Copyright (c): Tieto, All rights reserved
+// ==================================================================== */
+
+#include <appinfo.rh>
+#include "Blackbox.loc"
+
+RESOURCE LOCALISABLE_APP_INFO
+    {
+    short_caption = qtn_blackbox_short_caption_str;
+    caption_and_icon =
+        {
+        CAPTION_AND_ICON_INFO 
+            {
+            caption = qtn_blackbox_caption_list;
+            number_of_icons=1;
+            icon_file = "\\resource\\apps\\Blackbox_icon.mif";
+            }
+        };
+    }
+
+// End of file
+
+

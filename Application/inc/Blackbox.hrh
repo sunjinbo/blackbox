@@ -1,0 +1,139 @@
+/* ====================================================================
+ * File: Blackbox.hrh
+ * Created: 09/03/10
+ * Author: Sun Jinbo
+ * Copyright (c): Tieto, All rights reserved
+ * ==================================================================== */
+
+#ifndef BLACKBOX_HRH
+#define BLACKBOX_HRH
+
+// Black-box enumerate command codes
+enum TBlackboxCommandIds
+    {
+    EBlackboxWelcomeCmd = 0x6001, // start value must not be 0
+    EBlackboxSettingsCmd,
+    EBlackboxHelpCmd,
+    EBlackboxUserGuideCmd,
+    EBlackboxAboutCmd,
+    EBlackboxRestartCmd,
+    EBlackboxAudioOnCmd,
+    EBlackboxAudioOffCmd,
+    EBlackboxTipsCmd,
+    EBlackboxStartCmd,
+    EBlackboxOviCmd,
+    EBlackboxGuessCmd,
+    EBlackboxSkipGuessCmd,
+    EBlackSolvePuzzleCmd
+    };
+
+// Black-box application view ids.
+enum TBlackboxViewIds
+    {
+    EBlackboxPromoViewId = 1,
+    EBlackboxWelcomeViewId,
+    EBlackboxGameViewId,
+    EBlackboxSettingsViewId,
+    EBlackboxTipsViewId,
+    EBlackboxHelpViewId,
+    EBlackboxIntroViewId
+    };
+
+// Black-box control ids
+enum TBlackboxCntIds
+    {
+    EBlackboxAboutDialog = 1,
+    EBlackboxMaxRaysDialog,
+    EBlackboxGameOverDialog
+    };
+
+// Black-box settings item ids
+enum TBlackboxSettingsItemIds
+    {
+    EBlackboxSettingsAvatar = 0,
+    EBlackboxSettingsPuzzleDifficulty,
+    EBlackboxSettingsGuessType,
+    EBlackboxSettingsNumberOfNodes,
+    EBlackboxSettingsUnlimitedRays,
+    EBlackboxSettingsVibration,
+    EBlackboxSettingsSound,
+    EBlackboxSettingsVolumeValue
+    };
+
+// Black-box avatar
+enum TBlackboxAvatar
+    {
+    EAvatarLeslie,
+    EAvatarMardeline,
+    EAvatarRex
+    };
+
+// Black-box puzzle difficulty
+enum TBlackboxPuzzleDifficulty
+    {
+    EPuzzleEasy,
+    EPuzzleChallenge
+    };
+
+// Black-box puzzle difficulty
+enum TBlackboxGuessType
+    {
+    EAllAtOnce,
+    EAllAtATime
+    };
+
+// Black-box scene state
+enum TSceneState
+    {
+    ESceneMaxRaysOverflow,
+    ESceneMaxNodesOverflow,
+    ESceneLightboxActivated,
+    ESceneBlackboxActivated,
+    ESceneGuessCompleted,
+    ESceneGuessAdded,
+    ESceneGuessRemoved,
+    ESceneGuessTransfered,
+    ESceneGuessFailed,
+    ESceneGuessSuccess,
+    ESceneRaysCreated,
+    ESceneGameOver
+    };
+
+// Black-box scene commands
+enum TSceneCmds
+    {
+    ESceneGuessCmd,
+    ESceneSkipGuessCmd,
+    ESceneSolvePuzzleCmd,
+    ESceneRestartCmd,
+    ESceneUpdateSettingsCmd,
+    ESceneSetScoreGuessCmd,
+    ESceneSetScoreGuessingCmd,
+    ESceneSetScoreGuessSuccessCmd
+    };
+
+// Black-box toolbar state
+enum TToolbarState
+    {
+    EToolbarGuess,
+    EToolbarGuessDisabled,
+    EToolbarSkip,
+    EToolbarSkipDisabled
+    };
+
+// Black-box toolbar state
+enum TBlackboxIntroItemType
+    {
+    EIntroTextItem,
+    EIntroImageItem
+    };
+
+enum TBlackboxIntroFlag
+    {    
+    EIntroUpdateTime,
+    EIntroUnUpdateTime  
+    };
+
+#endif // BLACKBOX_HRH
+
+// End of file

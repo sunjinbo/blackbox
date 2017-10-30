@@ -1,0 +1,134 @@
+// ====================================================================
+// * File: Blackbox.mmp
+// * Created: 09/03/10
+// * Author: Sun Jinbo
+// * Copyright (c): Tieto, All rights reserved
+// * ====================================================================
+
+//#include <platform_paths.hrh>
+
+CAPABILITY        None
+
+TARGET            Blackbox.exe
+TARGETTYPE        exe
+UID               0x100039CE 0xAFF0567A
+
+LANG              SC
+
+//APP_LAYER_SYSTEMINCLUDE
+
+USERINCLUDE       ..\inc
+USERINCLUDE       ..\loc
+USERINCLUDE       ..\..\Common\inc
+SYSTEMINCLUDE     \epoc32\include
+
+#if defined ( __S60_50__ )
+SYSTEMINCLUDE           \epoc32\include\middleware
+SYSTEMINCLUDE           \epoc32\include\domain\middleware
+SYSTEMINCLUDE           \epoc32\include\domain\applications
+SYSTEMINCLUDE           \epoc32\include\domain\osextensions
+SYSTEMINCLUDE           \epoc32\include\osextensions
+SYSTEMINCLUDE           \epoc32\include\domain\middleware\loc
+#endif // __S60_50__
+
+SOURCEPATH        ..\src
+
+SOURCE            BlackboxApplication.cpp
+SOURCE            BlackboxAppUi.cpp
+SOURCE            BlackboxDocument.cpp
+SOURCE            BlackboxPromoContainer.cpp
+SOURCE            BlackboxPromoView.cpp
+SOURCE            BlackboxWelcomeView.cpp
+SOURCE            BlackboxWelcomeContainer.cpp
+SOURCE            BlackboxGameView.cpp
+SOURCE            BlackboxGameContainer.cpp
+SOURCE            BlackboxSettingsView.cpp
+SOURCE            BlackboxSettingsContainer.cpp
+SOURCE            BlackboxTipsView.cpp
+SOURCE            BlackboxTipsContainer.cpp
+SOURCE            BlackboxHelpView.cpp
+SOURCE            BlackboxHelpContainer.cpp
+SOURCE            BlackboxIntroView.cpp
+SOURCE            BlackboxIntroContainer.cpp
+SOURCE            BlackboxSettingList.cpp
+SOURCE            BlackboxUtils.cpp
+SOURCE            BlackboxBmpUtils.cpp
+SOURCE            BlackboxEditor.cpp
+SOURCE            BlackboxSettings.cpp
+SOURCE            BlackboxSliderSettingItem.cpp
+SOURCE            BlackboxCheckboxSettingItem.cpp
+SOURCE            LayoutManager.cpp
+SOURCE            Animation.cpp
+SOURCE            TipsManager.cpp
+SOURCE            Tips.cpp
+SOURCE            Box.cpp
+SOURCE            Lightbox.cpp
+SOURCE            Blackbox.cpp
+SOURCE            Nookbox.cpp
+SOURCE            BoxFactory.cpp
+SOURCE            SceneModel.cpp
+SOURCE            SceneTask.cpp
+SOURCE            SceneTaskScheduler.cpp
+SOURCE            ScenePane.cpp
+SOURCE            Rays.cpp
+SOURCE            Mirror.cpp
+SOURCE            QueryDialog.cpp
+SOURCE            HyperlinkControl.cpp
+SOURCE            AvatarPane.cpp
+SOURCE            ScorePane.cpp
+SOURCE            IntroImage.cpp
+SOURCE            IntroResource.cpp
+SOURCE            IntroResourceLoader.cpp
+
+SOURCEPATH        ..\data
+
+START RESOURCE    Blackbox.RSS
+HEADER
+targetpath        \resource\apps
+lang              sc
+end
+
+START RESOURCE    Blackbox_reg.rss
+TARGETPATH        \private\10003a3f\import\apps
+END
+
+start resource    Blackbox_loc.RSS
+targetpath        \resource\apps
+lang              sc
+end
+
+// EXTERNAL LIBRARY
+LIBRARY           euser.lib
+LIBRARY           apparc.lib
+LIBRARY           cone.lib 
+LIBRARY           eikcore.lib  
+LIBRARY           avkon.lib
+LIBRARY           commonengine.lib
+LIBRARY           efsrv.lib 
+LIBRARY           estor.lib
+LIBRARY           aknnotify.lib
+LIBRARY           ws32.lib
+LIBRARY           bitgdi.lib
+LIBRARY           fbscli.lib
+LIBRARY           eikctl.lib
+LIBRARY           eikcoctl.lib
+LIBRARY           gdi.lib
+LIBRARY           aknskins.lib
+LIBRARY           aknskinsrv.lib
+LIBRARY           etext.lib
+LIBRARY           form.lib
+LIBRARY           bafl.lib
+LIBRARY           egul.lib
+LIBRARY           aknicon.lib
+LIBRARY           apgrfx.lib 
+LIBRARY           apmime.lib 
+LIBRARY           centralrepository.lib
+LIBRARY           eikdlg.lib
+LIBRARY           touchfeedback.lib
+LIBRARY           flogger.lib
+
+// INTERNAL LIBRARY
+LIBRARY           BlackboxCommon.lib
+
+// End of file
+

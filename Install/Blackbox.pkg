@@ -1,0 +1,42 @@
+; Blackbox.pkg
+;
+;Language - standard language definitions
+&EN
+
+; standard SIS file header
+#{"Blackbox"},(0xAFF0567A),1,0,0
+
+;Supports Series 60 v 5.0
+(0x101F7961), 0, 0, 0, {"Black-box"}
+
+;Localized Vendor Name
+%{"Tieto EN"}
+
+;Unique Vendor name
+:"Tieto"
+
+; Files to copy
+"\epoc32\release\armv5\urel\Blackbox.exe"-"!:\sys\bin\Blackbox.exe"
+"\epoc32\data\z\private\10003a3f\import\apps\Blackbox_reg.rsc"-"!:\private\10003a3f\import\apps\Blackbox_reg.rsc"
+"\epoc32\data\z\resource\apps\Blackbox_loc.Rsc"-"!:\resource\apps\Blackbox_loc.Rsc"
+"\epoc32\data\z\resource\apps\Blackbox.Rsc"-"!:\resource\apps\Blackbox.Rsc"
+"\epoc32\data\z\resource\apps\Blackbox_icon.mif"-"!:\resource\apps\Blackbox_icon.mif"
+
+"\epoc32\data\Z\Resource\apps\Blackbox_toolbar.mif"-"!:\resource\apps\Blackbox_toolbar.mif"
+"\epoc32\data\Z\Resource\apps\Blackbox_about.mif"-"!:\resource\apps\Blackbox_about.mif"
+"\epoc32\data\Z\Resource\apps\Blackbox_scene.mif"-"!:\resource\apps\Blackbox_scene.mif"
+"\epoc32\data\Z\Resource\apps\Blackbox_welcome.mbm"-"!:\resource\apps\Blackbox_welcome.mbm"
+"\epoc32\data\Z\Resource\apps\Blackbox_welcome.mif"-"!:\resource\apps\Blackbox_welcome.mif"
+"\epoc32\data\Z\Resource\apps\Blackbox_tips.mif"-"!:\resource\apps\Blackbox_tips.mif"
+"\epoc32\data\Z\Resource\apps\Blackbox_effects.mbm"-"!:\resource\apps\Blackbox_effects.mbm"
+"\epoc32\data\Z\Resource\apps\Blackbox_effects.mif"-"!:\resource\apps\Blackbox_effects.mif"
+"\epoc32\data\Z\Resource\apps\Blackbox_avatar.mbm"-"!:\resource\apps\Blackbox_avatar.mbm"
+"\epoc32\data\Z\Resource\apps\Blackbox_avatar.mif"-"!:\resource\apps\Blackbox_avatar.mif"
+"\epoc32\data\Z\Resource\apps\Blackbox_promo.mbm"-"!:\resource\apps\Blackbox_promo.mbm"
+"\epoc32\data\Z\Resource\apps\Blackbox_promo.mif"-"!:\resource\apps\Blackbox_promo.mif"
+"\epoc32\data\Z\Resource\apps\Blackbox_score.mbm"-"!:\resource\apps\Blackbox_score.mbm"
+"\epoc32\data\Z\Resource\apps\Blackbox_score.mif"-"!:\resource\apps\Blackbox_score.mif"
+
+"\epoc32\release\armv5\urel\BlackboxCommon.dll"-"!:\sys\bin\BlackboxCommon.dll"
+
+"\epoc32\winscw\c\private\AFF0567A\help.htm"-"!:\private\AFF0567A\help.htm"

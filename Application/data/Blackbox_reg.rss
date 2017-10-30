@@ -1,0 +1,23 @@
+// ====================================================================
+// File: Blackbox_reg.rss
+// Created: 09/04/10
+// Author: Sun Jinbo
+// Copyright (c): Tieto, All rights reserved
+// ==================================================================== */
+
+//Blackbox application's registration resource file 
+
+#include <appinfo.rh>
+
+UID2 KUidAppRegistrationResourceFile
+UID3 0xAFF0567A
+
+RESOURCE APP_REGISTRATION_INFO 
+    {
+    app_file="Blackbox";
+    //
+    localisable_resource_file="\\resource\\apps\\Blackbox_loc";
+    //
+    }
+
+// End of file

@@ -1,0 +1,38 @@
+/* ====================================================================
+ * File: BlackboxCommon.mmp
+ * Created: 09/10/10
+ * Author: Sun Jinbo
+ * Copyright (c): Tieto, All rights reserved
+ * ==================================================================== */
+
+//#include <platform_paths.hrh>
+
+TARGET                         BlackboxCommon.dll
+TARGETTYPE               dll
+UID                                  0x1000008d 0xAFF0567B
+
+SOURCEPATH               ..\src
+SOURCE                        PropertyListener.cpp
+SOURCE                        PropertySubscriber.cpp
+SOURCE                        RegistrationTimeout.cpp
+SOURCE                        RepositorySubscriber.cpp
+SOURCE                        ScreensaverBlocker.cpp
+
+USERINCLUDE             ..\inc
+
+//APP_LAYER_SYSTEMINCLUDE
+
+SYSTEMINCLUDE        \epoc32\include
+
+LIBRARY                       euser.lib
+LIBRARY                       centralrepository.lib
+LIBRARY                       efsrv.lib
+LIBRARY                       eikcoctl.lib
+LIBRARY                       apgrfx.lib
+LIBRARY                       flogger.lib // for RFileLogger
+LIBRARY                       bafl.lib
+LIBRARY                       aknicon.lib
+
+CAPABILITY NONE
+
+// End of File

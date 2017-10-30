@@ -1,0 +1,17 @@
+# Black-box ScrumWorks ( 2011.01.01 - 2011.01.14 ) #
+
+Sprint A - ( 2011.01.01 -- 2011.01.07 )
+  + 1. Score pane's logic;   --> Done
+  + 2. Optimize toolbar's icons;
+  + 3. Add more talk for avatar; --> Done
+  + 4. Game logic testing and adjustment;
+  + 5. Localization;
+  + 6. Help browser and help contents;
+  + 7. Error fixing;
+
+Sprint B - ( 2011.01.08 -- 2011.01.014 )
+  + 1. Audio;
+  + 2. Vibration efforts;
+  + 3. E: testing..
+  + 4. Error fixing;
+  + 5. Tips configuration;

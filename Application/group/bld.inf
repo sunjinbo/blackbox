@@ -1,0 +1,25 @@
+// ====================================================================
+// * File: bld.inf
+// * Created: 09/03/10
+// * Author: Sun Jinbo
+// * Copyright (c): Tieto, All rights reserved
+// * ====================================================================
+
+
+PRJ_EXPORTS
+..\hlp\help.htm \epoc32\winscw\c\private\AFF0567A\help.htm
+
+PRJ_MMPFILES
+gnumakefile BlackboxIcons_aif.mk
+gnumakefile Blackbox_about.mk
+gnumakefile Blackbox_toolbar.mk
+gnumakefile Blackbox_scene.mk
+gnumakefile Blackbox_promo.mk
+gnumakefile Blackbox_welcome.mk
+gnumakefile Blackbox_tips.mk
+gnumakefile Blackbox_effects.mk
+gnumakefile Blackbox_avatar.mk
+gnumakefile Blackbox_score.mk
+Blackbox.mmp
+
+// End of file

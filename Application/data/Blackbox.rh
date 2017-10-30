@@ -1,0 +1,79 @@
+/* ====================================================================
+ * File: Blackbox.rh
+ * Created: 09/08/10
+ * Modified: 09/08/10
+ * Author: Sun Jinbo
+ * Copyright (c): Tieto, All rights reserved
+ * ==================================================================== */
+
+#ifndef BLACKBOX_RH
+#define BLACKBOX_RH
+
+// INCLUDE FILE
+#include "Blackbox.hrh"
+
+// RESOURCE DEFINATION
+
+STRUCT TIPS_LIST
+    {
+    STRUCT itmes[];
+    }
+
+STRUCT TIPS
+    {
+    BYTE id;
+    LTEXT short_tips = "";
+    LTEXT tips = "" ;
+    STRUCT animation;
+    }
+
+STRUCT ANIMATION
+    {
+    BYTE repeat;
+    BYTE revert;
+    WORD width;
+    WORD height;
+    LONG delayinterval;
+    LONG frameinterval;
+    LONG bmpfrom;
+    LONG bmpto;
+    LTEXT bmpfile="";
+    STRUCT frame_array[];
+    }
+
+STRUCT ANIMATION_FRAME
+    {
+    LONG bmpid = 0xffff;
+    LONG bmpmask = 0xffff;
+    }
+
+STRUCT INTRO_TEXT
+    {
+    BYTE type = EIntroTextItem;
+    BYTE updatetimeflag = EAboutUnUpdateTime;
+    LLINK txt;
+    }
+
+STRUCT ABOUT_IMAGE
+    {
+    BYTE type = EIntroImageItem;
+    LTEXT16 bmpfile = "";
+    WORD bmpid = 0xffff;
+    }
+
+STRUCT INTRO_SVGIMAGE
+    {    
+    WORD svgid = 0xffff;
+    WORD svgmaskid = 0xffff;
+    WORD height = 32;
+    WORD width = 32;
+    }
+
+STRUCT INTRO_ITEM_LIST
+    {
+    STRUCT items[]; // text or image items
+    }
+
+#endif // BLACKBOX_RH
+
+// End of File

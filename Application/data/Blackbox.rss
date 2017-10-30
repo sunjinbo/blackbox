@@ -1,0 +1,1487 @@
+// ====================================================================
+// File: Blackbox.rss
+// Created: 09/03/10
+// Author: Sun Jinbo
+// Copyright (c): Tieto, All rights reserved
+// ==================================================================== */
+
+NAME HELL
+
+#include <eikon.rh>
+#include <eikon.rsg>
+#include <avkon.rh>
+#include <avkon.rsg>
+#include <avkon.mbg>
+#include <Blackbox_toolbar.mbg>
+#include <Blackbox_about.mbg>
+#include <Blackbox_welcome.mbg>
+#include <Blackbox_tips.mbg>
+#include "Blackbox.hrh"
+#include "Blackbox.loc"
+#include "Blackbox.rh"
+
+//  RESOURCE DEFINITIONS
+#define BLACKBOX_TOOLBAR_ICON_FILE "\\resource\\apps\\Blackbox_toolbar.mbm"
+#define BLACKBOX_ABOUT_ICON_FILE "\\resource\\apps\\Blackbox_about.mbm"
+#define BLACKBOX_WELCOME_ICON_FILE "\\resource\\apps\\Blackbox_welcome.mbm"
+#define BLACKBOX_TIPS_ICON_FILE "\\resource\\apps\\Blackbox_tips.mbm"
+
+// ---------------------------------------------------------
+//   
+//    Define the resource file signature 
+//    This resource should be empty.
+//
+// ---------------------------------------------------------
+//
+RESOURCE RSS_SIGNATURE {}
+
+// ---------------------------------------------------------
+//   
+//    Default Document Name
+//
+// ---------------------------------------------------------
+//
+RESOURCE TBUF r_default_document_name { buf=""; }
+
+// ---------------------------------------------------------
+//   
+//    Define default application info
+//
+// ---------------------------------------------------------
+//
+RESOURCE EIK_APP_INFO
+    {
+    }
+
+// ---------------------------------------------------------
+//
+//   r_Blackbox_main_menubar
+//   Menubar for Blackbox example
+//
+// ---------------------------------------------------------
+//
+RESOURCE MENU_BAR r_blackbox_main_menubar
+    {
+    titles =
+        {
+        MENU_TITLE { menu_pane = r_blackbox_main_menu; }
+        };
+    }
+
+// ---------------------------------------------------------
+//
+//   r_Blackbox_main_menu
+//   Menu for "Options"
+//
+// ---------------------------------------------------------
+//
+RESOURCE MENU_PANE r_blackbox_main_menu
+    {
+    items =
+        {
+        MENU_ITEM
+                {
+                command = EBlackboxSettingsCmd;
+                txt = qtn_blackbox_menu_settings;
+                },
+        MENU_ITEM
+                {
+                txt = qtn_blackbox_menu_help;
+                cascade = r_backbox_help_menu;
+                }
+        };
+    }
+
+// ---------------------------------------------------------
+//
+//   r_Blackbox_game_menu
+//   Menu for "Options"
+//
+// ---------------------------------------------------------
+//
+RESOURCE MENU_PANE r_blackbox_game_menu
+    {
+    items =
+        {
+        MENU_ITEM
+                {
+                command = EBlackboxRestartCmd;
+                txt = qtn_blackbox_menu_restart;
+                },
+        MENU_ITEM
+                {
+                txt = qtn_blackbox_menu_help;
+                cascade = r_backbox_help_menu;
+                }
+        };
+    }
+
+// ---------------------------------------------------------
+//
+//   r_backbox_help_menu
+//   Menu for "Help"
+//
+// ---------------------------------------------------------
+//
+RESOURCE MENU_PANE r_backbox_help_menu
+    {
+    items =
+        {
+        MENU_ITEM
+                {
+                command = EBlackboxUserGuideCmd;
+                txt = qtn_blackbox_menu_user_guide;
+                },
+        MENU_ITEM
+                {
+                command = EBlackboxAboutCmd;
+                txt = qtn_blackbox_menu_about;
+                }
+        };
+    }
+
+//----------------------------------------------------
+//
+//    r_blackbox_softkeys_next_back
+//    Default CBA buttons for SIMInfo view
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_blackbox_softkeys_next_back
+    {
+    flags = EAknCBAFlagRespondWhenInvisible;
+    buttons =
+        {
+        CBA_BUTTON 
+                { 
+                id = EAknSoftkeyNext;
+                txt = qtn_blackbox_softkeys_next; 
+                },
+        CBA_BUTTON 
+                { 
+                id = EAknSoftkeyBack;
+                txt = qtn_blackbox_softkeys_back;
+                }
+        };
+    }
+
+// -----------------------------------------------------------------------------
+//
+//    r_blackbox_promo_view
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_blackbox_promo_view
+    {
+    }
+
+// -----------------------------------------------------------------------------
+//
+//    r_blackbox_welcome_view
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_blackbox_welcome_view
+    {
+    menubar = r_blackbox_main_menubar;
+    cba = R_AVKON_SOFTKEYS_OPTIONS_EXIT;
+    }
+
+// -----------------------------------------------------------------------------
+//
+//    r_blackbox_game_view
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_blackbox_game_view
+    {
+    menubar = r_blackbox_game_menubar;
+    cba = R_AVKON_SOFTKEYS_OPTIONS_BACK;
+    toolbar = r_blackbox_game_toolbar2;
+    }
+
+// ---------------------------------------------------------
+//
+//   r_blackbox_game_menubar
+//   Menubar for Blackbox example
+//
+// ---------------------------------------------------------
+//
+RESOURCE MENU_BAR r_blackbox_game_menubar
+    {
+    titles =
+        {
+        MENU_TITLE 
+                { 
+                menu_pane = r_blackbox_game_menu; 
+                }
+        };
+    }
+
+// -----------------------------------------------------------------------------
+//
+//    r_blackbox_settings_view
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_blackbox_settings_view
+    {
+    cba = R_AVKON_SOFTKEYS_BACK;
+    }
+
+// -----------------------------------------------------------------------------
+//
+//    r_blackbox_tips_view
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_blackbox_tips_view
+    {
+    cba = r_blackbox_softkeys_next_back;
+    }
+
+// -----------------------------------------------------------------------------
+//
+//    r_blackbox_help_view
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_blackbox_help_view
+    {
+    cba = R_AVKON_SOFTKEYS_BACK;
+    }
+
+// -----------------------------------------------------------------------------
+//
+//    r_blackbox_intro_view
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_blackbox_intro_view
+    {
+    cba = R_AVKON_SOFTKEYS_BACK;
+    }
+
+// -----------------------------------------------------------------------------
+//
+//    r_blackbox_game_toolbar
+//
+//    Guess + Solve Puzzle + Tips
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_TOOLBAR r_blackbox_game_toolbar
+    {
+    flags = KAknToolbarFixed;
+    items =
+        {
+        TBAR_CTRL
+            {
+            type = EAknCtButton;
+            id = EBlackboxGuessCmd;
+            control = AVKON_BUTTON
+                {
+                flags = KAknButtonTextInsideFrame;
+                states =
+                    {
+                    AVKON_BUTTON_STATE
+                        {
+                        helptxt = qtn_blackbox_toolbar_guess_helptxt;
+                        bmpfile = BLACKBOX_TOOLBAR_ICON_FILE;
+                        bmpid = EMbmBlackbox_toolbarGuess;
+                        bmpmask = EMbmBlackbox_toolbarGuess_mask;
+                        }
+                    };
+                };
+            },
+        TBAR_CTRL
+            {
+            type = EAknCtButton;
+            id = EBlackSolvePuzzleCmd;
+            control = AVKON_BUTTON
+                {
+                flags = KAknButtonTextInsideFrame;
+                states =
+                    {
+                    AVKON_BUTTON_STATE
+                        {
+                        helptxt = qtn_blackbox_toolbar_solvepuzzle_helptxt;
+                        bmpfile = BLACKBOX_TOOLBAR_ICON_FILE;
+                        bmpid = EMbmBlackbox_toolbarSolvepuzzle;
+                        bmpmask = EMbmBlackbox_toolbarSolvepuzzle_mask;
+                        }
+                    };
+                };
+            },
+        TBAR_CTRL
+            {
+            type = EAknCtButton;
+            id = EBlackboxTipsCmd;
+            control = AVKON_BUTTON
+                {
+                flags = KAknButtonTextInsideFrame;
+                states =
+                    {
+                    AVKON_BUTTON_STATE
+                        {
+                        helptxt = qtn_blackbox_toolbar_tips_helptxt;
+                        bmpfile = BLACKBOX_TOOLBAR_ICON_FILE;
+                        bmpid = EMbmBlackbox_toolbarTips;
+                        bmpmask = EMbmBlackbox_toolbarTips_mask;
+                        }
+                    };
+                };
+            }
+        };
+    }
+
+// -----------------------------------------------------------------------------
+//
+//    r_blackbox_game_toolbar2
+//
+//    Skip guess + Solve Puzzle + Tips
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_TOOLBAR r_blackbox_game_toolbar2
+    {
+    flags = KAknToolbarFixed;
+    items =
+        {
+        TBAR_CTRL
+            {
+            type = EAknCtButton;
+            id = EBlackboxSkipGuessCmd;
+            control = AVKON_BUTTON
+                {
+                flags = KAknButtonTextInsideFrame;
+                states =
+                    {
+                    AVKON_BUTTON_STATE
+                        {
+                        helptxt = qtn_blackbox_toolbar_skipguess_helptxt;
+                        bmpfile = BLACKBOX_TOOLBAR_ICON_FILE;
+                        bmpid = EMbmBlackbox_toolbarSkip;
+                        bmpmask = EMbmBlackbox_toolbarSkip_mask;
+                        }
+                    };
+                };
+            },
+        TBAR_CTRL
+            {
+            type = EAknCtButton;
+            id = EBlackSolvePuzzleCmd;
+            control = AVKON_BUTTON
+                {
+                flags = KAknButtonTextInsideFrame;
+                states =
+                    {
+                    AVKON_BUTTON_STATE
+                        {
+                        helptxt = qtn_blackbox_toolbar_solvepuzzle_helptxt;
+                        bmpfile = BLACKBOX_TOOLBAR_ICON_FILE;
+                        bmpid = EMbmBlackbox_toolbarSolvepuzzle;
+                        bmpmask = EMbmBlackbox_toolbarSolvepuzzle_mask;
+                        }
+                    };
+                };
+            },
+        TBAR_CTRL
+            {
+            type = EAknCtButton;
+            id = EBlackboxTipsCmd;
+            control = AVKON_BUTTON
+                {
+                flags = KAknButtonTextInsideFrame;
+                states =
+                    {
+                    AVKON_BUTTON_STATE
+                        {
+                        helptxt = qtn_blackbox_toolbar_tips_helptxt;
+                        bmpfile = BLACKBOX_TOOLBAR_ICON_FILE;
+                        bmpid = EMbmBlackbox_toolbarTips;
+                        bmpmask = EMbmBlackbox_toolbarTips_mask;
+                        }
+                    };
+                };
+            }
+        };
+    }
+
+//-----------------------------------------------------------------------------
+//   
+//    r_blackbox_button_start
+//    Button for starting game view
+//    Used by Blackbox\Welcome
+//-----------------------------------------------------------------------------
+//
+RESOURCE AVKON_BUTTON r_blackbox_button_start
+    {
+    flags  = KAknButtonTextInsideFrame;
+    states =
+        {
+        AVKON_BUTTON_STATE
+            {
+            txt = qtn_blackbox_btn_start_txt;
+            helptxt = qtn_blackbox_btn_start_helptxt;
+            bmpmask = -1;
+            dim_bmpmask = -1;
+            press_bmpmask = -1;
+            hover_bmpmask = -1;
+            }
+        };
+    }
+
+//-----------------------------------------------------------------------------
+//   
+//    r_blackbox_button_ovi
+//    Button for starting Ovi web site
+//    Used by Blackbox\Welcome
+//-----------------------------------------------------------------------------
+//
+RESOURCE AVKON_BUTTON r_blackbox_button_ovi
+    {
+    flags  = KAknButtonTextInsideFrame;
+    states =
+        {
+        AVKON_BUTTON_STATE
+            {
+            txt = qtn_blackbox_btn_ovi_txt;
+            helptxt = qtn_blackbox_btn_ovi_helptxt;
+            bmpmask = -1;
+            dim_bmpmask = -1;
+            press_bmpmask = -1;
+            hover_bmpmask = -1;
+            }
+        };
+    }
+
+// ---------------------------------------------------------
+//
+//    r_blackbox_setting_list
+//
+// ---------------------------------------------------------
+//
+RESOURCE AVKON_SETTING_ITEM_LIST r_blackbox_setting_list
+    {
+    title = "Black-box settings";
+    }
+
+// * Avatar *
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_page_avatar   
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_SETTING_PAGE r_blackbox_setting_page_avatar
+    {
+    number = EAknSettingPageNoOrdinalDisplayed; 
+    label = "Avatar";
+    type = EAknCtPopupSettingList;
+    editor_resource_id = r_blackbox_setting_avatar_list;
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_avatar_list    
+//
+//----------------------------------------------------
+//
+RESOURCE POPUP_SETTING_LIST r_blackbox_setting_avatar_list
+    {
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_avatar_text    
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_POPUP_SETTING_TEXTS r_blackbox_setting_avatar_text
+    {
+    setting_texts_resource = r_blackbox_setting_avatar_texts;
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_avatar_texts    
+//
+//----------------------------------------------------
+//
+RESOURCE ARRAY r_blackbox_setting_avatar_texts
+    {
+    items =
+        {
+        AVKON_ENUMERATED_TEXT
+            {
+            value = EAvatarLeslie; 
+            text = "Leslie";
+            },
+        AVKON_ENUMERATED_TEXT
+            {
+            value = EAvatarMardeline;
+            text = "Mardeline";
+            },
+        AVKON_ENUMERATED_TEXT
+            {
+            value = EAvatarRex;
+            text = "Rex";
+            }
+        };
+    }
+
+// * Puzzle difficulty *
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_page_puzzledifficulty    
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_SETTING_PAGE r_blackbox_setting_page_puzzledifficulty
+    {
+    number = EAknSettingPageNoOrdinalDisplayed; 
+    label = "Puzzle difficulty";
+    type = EAknCtPopupSettingList;
+    editor_resource_id = r_blackbox_setting_puzzledifficulty_list;
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_puzzledifficulty_list    
+//
+//----------------------------------------------------
+//
+RESOURCE POPUP_SETTING_LIST r_blackbox_setting_puzzledifficulty_list
+    {
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_puzzledifficulty_text    
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_POPUP_SETTING_TEXTS r_blackbox_setting_puzzledifficulty_text
+    {
+    setting_texts_resource = r_blackbox_setting_puzzledifficulty_texts;
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_puzzledifficulty_texts    
+//
+//----------------------------------------------------
+//
+RESOURCE ARRAY r_blackbox_setting_puzzledifficulty_texts
+    {
+    items =
+        {
+        AVKON_ENUMERATED_TEXT
+            {
+            value = EPuzzleEasy; 
+            text = "Easy";
+            },
+        AVKON_ENUMERATED_TEXT
+            {
+            value = EPuzzleChallenge;
+            text = "Challenge";
+            }
+        };
+    }
+
+// * Guess type *
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_page_guesstype    
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_SETTING_PAGE r_blackbox_setting_page_guesstype 
+    {
+    number = EAknSettingPageNoOrdinalDisplayed; 
+    label = "Guess type";
+    softkey_resource = R_AVKON_SOFTKEYS_OK_CANCEL__OK; //MSK
+    type = EAknCtPopupSettingList;
+    editor_resource_id = r_blackbox_setting_guesstype_list;
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_guesstype_list    
+//
+//----------------------------------------------------
+//
+RESOURCE POPUP_SETTING_LIST r_blackbox_setting_guesstype_list
+    {
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_guesstype_text    
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_POPUP_SETTING_TEXTS r_blackbox_setting_guesstype_text
+    {
+    setting_texts_resource = r_blackbox_setting_guesstype_texts;
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_guesstype_texts    
+//
+//----------------------------------------------------
+//
+RESOURCE ARRAY r_blackbox_setting_guesstype_texts
+    {
+    items =
+        {
+        AVKON_ENUMERATED_TEXT
+            {
+            value = EAllAtOnce; 
+            text = "All at once";
+            },
+        AVKON_ENUMERATED_TEXT
+            {
+            value = EAllAtATime;
+            text = "All at a time";
+            }
+        };
+    }
+
+
+
+// * Number of nodes *
+
+// ---------------------------------------------------------
+//
+//    r_blackbox_setting_page_numberofnodes
+//
+// ---------------------------------------------------------
+//
+RESOURCE AVKON_SETTING_PAGE r_blackbox_setting_page_numberofnodes
+    {
+    label = "Number of nodes";
+    type = EAknCtSlider;
+    editor_resource_id = r_blackbox_setting_editor_numberofnodes;
+    }
+
+// ---------------------------------------------------------
+//
+//    r_blackbox_setting_editor_numberofnodes
+//
+// ---------------------------------------------------------
+//
+RESOURCE SLIDER r_blackbox_setting_editor_numberofnodes
+    {
+    layout = EAknSettingsItemSliderLayout;
+    minvalue = 3;
+    maxvalue = 6;
+    step = 1;
+    valuetype = EAknSliderValueBareFigure;
+    minlabel = "3";
+    maxlabel = "6";
+    }
+
+// * Unlimited rays *
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_page_unlimitedrays
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_SETTING_PAGE r_blackbox_setting_page_unlimitedrays
+    {
+    number = EAknSettingPageNoOrdinalDisplayed; 
+    label = "Rays' number";
+    type = EAknSetListBox;
+    editor_resource_id = r_blackbox_setting_unlimitedrays_list;
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_unlimitedrays_list    
+//
+//----------------------------------------------------
+//
+RESOURCE LISTBOX r_blackbox_setting_unlimitedrays_list
+    {
+    flags = EEikListBoxMultipleSelection;
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_unlimitedrays_text    
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_POPUP_SETTING_TEXTS r_blackbox_setting_unlimitedrays_text
+    {
+    setting_texts_resource = r_blackbox_setting_unlimitedrays_texts;
+    popped_up_texts_resource = r_blackbox_setting_popped_up_unlimitedrays_texts;
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_unlimitedrays_texts    
+//
+//----------------------------------------------------
+//
+RESOURCE ARRAY r_blackbox_setting_unlimitedrays_texts
+    {
+    items =
+        {
+        AVKON_ENUMERATED_TEXT
+            {
+            value = 0;
+            text = "Unlimited rays";
+            }
+        };
+    }
+
+//----------------------------------------------------
+//    
+//  r_blackbox_setting_popped_up_unlimitedrays_texts    
+//
+//----------------------------------------------------
+//
+RESOURCE ARRAY r_blackbox_setting_popped_up_unlimitedrays_texts
+    {
+    items = 
+        {
+        LBUF { txt = "Unlimited rays";   }
+        };
+    }
+
+
+/* Vibration */
+
+// ---------------------------------------------------------
+//    r_blackbox_setting_page_vibration
+// ---------------------------------------------------------
+//
+RESOURCE AVKON_SETTING_PAGE r_blackbox_setting_page_vibration
+    {
+    type = EAknCtPopupSettingList;
+    }
+
+// ---------------------------------------------------------
+//    r_blackbox_setting_binary_text
+// ---------------------------------------------------------
+//
+RESOURCE AVKON_POPUP_SETTING_TEXTS r_blackbox_setting_binary_text
+    {
+    flags = 0;
+    setting_texts_resource = r_blackbox_setting_on_off_texts;
+    popped_up_texts_resource = r_blackbox_setting_popped_up_on_off_texts;
+    }
+
+// ---------------------------------------------------------
+//    r_blackbox_setting_on_off_texts
+// ---------------------------------------------------------
+//
+RESOURCE ARRAY r_blackbox_setting_on_off_texts
+    {
+    items =
+            {
+            AVKON_ENUMERATED_TEXT { value = 1; text = "On"; },
+            AVKON_ENUMERATED_TEXT { value = 0; text = "Off";  }
+            };
+    }
+
+// ---------------------------------------------------------
+//    r_blackbox_setting_popped_up_on_off_texts
+// ---------------------------------------------------------
+//
+RESOURCE ARRAY r_blackbox_setting_popped_up_on_off_texts
+    {
+    items =
+            {
+            LBUF { txt = "On"; },
+            LBUF { txt = "Off";  }
+            };
+    }
+
+/* Sound */
+
+// ---------------------------------------------------------
+//    r_blackbox_setting_page_sound
+// ---------------------------------------------------------
+//
+RESOURCE AVKON_SETTING_PAGE r_blackbox_setting_page_sound
+    {
+    type = EAknCtPopupSettingList;
+    }
+
+/* Volume value */
+
+// ---------------------------------------------------------
+//    r_blackbox_setting_page_volumevalue
+// ---------------------------------------------------------
+//
+RESOURCE AVKON_SETTING_PAGE r_blackbox_setting_page_volumevalue
+    {
+    label = "Volume value";
+    type = EAknCtVolumeControl;
+    softkey_resource = R_AVKON_SOFTKEYS_OK_CANCEL__OK;
+    editor_resource_id = r_blackbox_setting_volume_control;
+    }
+
+// ---------------------------------------------------------
+//    r_blackbox_setting_volume_control
+// ---------------------------------------------------------
+//
+RESOURCE VOLUME r_blackbox_setting_volume_control
+    {
+    flags = ESettingsVolumeControl;
+    value = 7;
+    }
+
+//-----------------------------------------------------------------------------
+//   
+//    r_blackbox_about_dialog
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE DIALOG r_blackbox_about_dialog
+    {
+    flags = EAknInformationNoteFlags;
+    buttons = R_AVKON_SOFTKEYS_EMPTY;
+    items = 
+        {
+        DLG_LINE
+                {
+                type = EAknCtNote;
+                id = EBlackboxAboutDialog;
+                itemflags = EEikDlgItemNonFocusing;
+                control = AVKON_NOTE
+                        {
+                        layout = EGeneralLayout;
+                        singular_label = qtn_blackbox_about_dialog_text;
+                        plural_label = qtn_blackbox_about_dialog_plural_text;
+                        imagefile = BLACKBOX_ABOUT_ICON_FILE;
+                        imageid = EMbmBlackbox_aboutAbout;
+                        imagemask = EMbmBlackbox_aboutAbout_mask;
+                        };
+                }
+        };
+    }
+
+//-----------------------------------------------------------------------------
+//   
+//    r_blackbox_maxrays_dialog
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE DIALOG r_blackbox_maxrays_dialog
+    {
+    flags = EAknInformationNoteFlags;
+    buttons = R_AVKON_SOFTKEYS_EMPTY;
+    items = 
+        {
+        DLG_LINE
+                {
+                type = EAknCtNote;
+                id = EBlackboxMaxRaysDialog;
+                itemflags = EEikDlgItemNonFocusing;
+                control = AVKON_NOTE
+                        {
+                        layout = EGeneralLayout;
+                        singular_label = qtn_blackbox_maxrays_text;
+                        plural_label = qtn_blackbox_maxrays_plural_text;
+                        imagefile = BLACKBOX_ABOUT_ICON_FILE;
+                        imageid = EMbmBlackbox_aboutAbout;
+                        imagemask = EMbmBlackbox_aboutAbout_mask;
+                        };
+                }
+        };
+    }
+
+//-----------------------------------------------------------------------------
+//   
+//    r_blackbox_gameover_dialog
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE DIALOG r_blackbox_gameover_dialog
+    {
+    flags = EAknInformationNoteFlags;
+    buttons = R_AVKON_SOFTKEYS_EMPTY;
+    items = 
+        {
+        DLG_LINE
+                {
+                type = EAknCtNote;
+                id = EBlackboxGameOverDialog;
+                itemflags = EEikDlgItemNonFocusing;
+                control = AVKON_NOTE
+                        {
+                        layout = EGeneralLayout;
+                        singular_label = qtn_blackbox_gameover_text;
+                        plural_label = qtn_blackbox_gameover_plural_text;
+                        imagefile = BLACKBOX_ABOUT_ICON_FILE;
+                        imageid = EMbmBlackbox_aboutAbout;
+                        imagemask = EMbmBlackbox_aboutAbout_mask;
+                        };
+                }
+        };
+    }
+
+//-----------------------------------------------------------------------------
+//   
+//    r_blackbox_welcome_dialog
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE DIALOG r_blackbox_welcome_dialog
+    {
+    flags = EGeneralQueryFlags | EEikDialogFlagNoBorder | EEikDialogFlagNoShadow;
+    buttons = R_AVKON_SOFTKEYS_OK_EMPTY;
+    }
+
+//-----------------------------------------------------------------------------
+//   
+//    r_blackbox_promo_dialog
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE DIALOG r_blackbox_promo_dialog
+    {
+    flags = EGeneralQueryFlags;
+    buttons = R_AVKON_SOFTKEYS_YES_NO;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtPopupHeadingPane;
+            id = EAknMessageQueryHeaderId;
+            control = AVKON_HEADING
+                {
+                headinglayout = R_AVKON_WML_SIGN_QUERY_HEADING_PANE;
+                label = "Warning";
+                };
+            },
+        DLG_LINE
+            {
+            type = EAknCtQuery;
+            id = EGeneralQuery;
+            control = AVKON_CONFIRMATION_QUERY
+                {
+                layout = EConfirmationQueryLayout;
+                label = "";
+                bmpfile = BLACKBOX_TOOLBAR_ICON_FILE; // ToDo:
+                bmpid = EMbmBlackbox_toolbarTips;
+                bmpmask = EMbmBlackbox_toolbarTips_mask;
+                };
+            }
+        };
+    }
+
+//-----------------------------------------------------------------------------
+//   
+//    r_blackbox_tips_dialog
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE DIALOG r_blackbox_tips_dialog
+    {
+    flags = EGeneralQueryFlags;
+    buttons = R_AVKON_SOFTKEYS_YES_NO;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtPopupHeadingPane;
+            id = EAknMessageQueryHeaderId;
+            control = AVKON_HEADING
+                {
+                headinglayout = R_AVKON_WML_SIGN_QUERY_HEADING_PANE;
+                label = "Tips and Tricks";
+                };
+            },
+        DLG_LINE
+            {
+            type = EAknCtQuery;
+            id = EGeneralQuery;
+            control = AVKON_CONFIRMATION_QUERY
+                {
+                layout = EConfirmationQueryLayout;
+                label = "Are you sure it's a folder?";
+                bmpfile = BLACKBOX_TOOLBAR_ICON_FILE;
+                bmpid = EMbmBlackbox_toolbarTips;
+                bmpmask = EMbmBlackbox_toolbarTips_mask;
+                };
+            }
+        };
+    }
+
+//-----------------------------------------------------------------------------
+//   
+//    r_blackbox_tips_list
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE TIPS_LIST r_blackbox_tips_list
+    {
+    itmes = 
+        {
+        TIPS
+            {
+            id = 1;
+            short_tips = "Ray that doesn't come across with any ball with go straight through the box";
+            tips = "Ray that doesn't come across with any ball with go straight through the box";
+            animation = ANIMATION
+                {
+                repeat = 1;
+                revert = 0;
+                width = 200;
+                height = 200;
+                delayinterval = 0;
+                frameinterval = 500000;
+                bmpfrom = EMbmBlackbox_tips1;
+                bmpto = EMbmBlackbox_tipsLastElement;
+                bmpfile = BLACKBOX_TIPS_ICON_FILE;
+                frame_array =         
+                    {
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips1;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        },
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips11;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        }
+                    };
+                };
+            },
+        TIPS
+            {
+            id = 2;
+            short_tips = "Rays that hits a ball will be absorbed(it will not come outside the box)";
+            tips = "Rays that hits a ball will be absorbed(it will not come outside the box)";
+            animation = ANIMATION
+                {
+                repeat = 1;
+                revert = 0;
+                width = 200;
+                height = 200;
+                delayinterval = 1000000;
+                frameinterval = 1000000;
+                bmpfrom = EMbmBlackbox_tips1;
+                bmpto = EMbmBlackbox_tipsLastElement;
+                bmpfile = BLACKBOX_TIPS_ICON_FILE;
+                frame_array =         
+                    {
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips2;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        },
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips22;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        }
+                    };
+                };
+            },
+        TIPS
+            {
+            id = 3;
+            short_tips = "Rays that goes one cell to the left or to the right of a ball will be deflected by 90 degrees out of the ball";
+            tips = "Rays that goes one cell to the left or to the right of a ball will be deflected by 90 degrees out of the ball";
+            animation = ANIMATION
+                {
+                repeat = 1;
+                revert = 0;
+                width = 200;
+                height = 200;
+                delayinterval = 1000000;
+                frameinterval = 1000000;
+                bmpfrom = EMbmBlackbox_tips1;
+                bmpto = EMbmBlackbox_tipsLastElement;
+                bmpfile = BLACKBOX_TIPS_ICON_FILE;
+                frame_array =         
+                    {
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips3;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        },
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips33;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        }
+                    };
+                };
+            },
+        TIPS
+            {
+            id = 4;
+            short_tips = "Rays that goes between two balls placed at the distance of one cell from each other will be turned around - deflected by 180 degrees";
+            tips = "Rays that goes between two balls placed at the distance of one cell from each other will be turned around - deflected by 180 degrees";
+            animation = ANIMATION
+                {
+                repeat = 1;
+                revert = 0;
+                width = 200;
+                height = 200;
+                delayinterval = 0;
+                frameinterval = 500000;
+                bmpfrom = EMbmBlackbox_tips1;
+                bmpto = EMbmBlackbox_tipsLastElement;
+                bmpfile = BLACKBOX_TIPS_ICON_FILE;
+                frame_array =         
+                    {
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips4;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        },
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips44;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        }
+                    };
+                };
+            },
+        TIPS
+            {
+            id = 5;
+            short_tips = "Rays that goes into the blackbox on the left or on the right of a ball that stands by the box's side will be turned around immediately";
+            tips = "Rays that goes into the blackbox on the left or on the right of a ball that stands by the box's side will be turned around immediately";
+            animation = ANIMATION
+                {
+                repeat = 1;
+                revert = 0;
+                width = 200;
+                height = 200;
+                delayinterval = 1000000;
+                frameinterval = 1000000;
+                bmpfrom = EMbmBlackbox_tips1;
+                bmpto = EMbmBlackbox_tipsLastElement;
+                bmpfile = BLACKBOX_TIPS_ICON_FILE;
+                frame_array =         
+                    {
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips5;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        },
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips55;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        }
+                    };
+                };
+            },
+        TIPS
+            {
+            id = 6;
+            short_tips = "Watch out! Ray could be deflected by serveral balls";
+            tips = "Watch out! Ray could be deflected by serveral balls";
+            animation = ANIMATION
+                {
+                repeat = 1;
+                revert = 0;
+                width = 200;
+                height = 200;
+                delayinterval = 1000000;
+                frameinterval = 1000000;
+                bmpfrom = EMbmBlackbox_tips1;
+                bmpto = EMbmBlackbox_tipsLastElement;
+                bmpfile = BLACKBOX_TIPS_ICON_FILE;
+                frame_array =         
+                    {
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips6;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        },
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips66;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        }
+                    };
+                };
+            },
+        TIPS
+            {
+            id = 7;
+            short_tips = "And sometimes, ray also could be absorbed by a couple balls";
+            tips = "And sometimes, ray also could be absorbed by a couple balls. This can cause additional difficulties in finding the correct location of the balls.";
+            animation = ANIMATION
+                {
+                repeat = 1;
+                revert = 0;
+                width = 200;
+                height = 200;
+                delayinterval = 1000000;
+                frameinterval = 1000000;
+                bmpfrom = EMbmBlackbox_tips1;
+                bmpto = EMbmBlackbox_tipsLastElement;
+                bmpfile = BLACKBOX_TIPS_ICON_FILE;
+                frame_array =         
+                    {
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips7;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        },
+                    ANIMATION_FRAME
+                        {
+                        bmpid = EMbmBlackbox_tips77;
+                        bmpmask = EMbmBlackbox_tipsMask;
+                        }
+                    };
+                };
+            }
+        };
+    }
+
+// -----------------------------------------------------------------------------
+//      r_blackbox_welcome_animation
+// -----------------------------------------------------------------------------
+//
+RESOURCE ANIMATION r_blackbox_welcome_animation
+    {
+    repeat = 1;
+    revert = 0;
+    width = 100;
+    height = 100;
+    delayinterval = 150000;
+    frameinterval = 150000;
+    bmpfrom = EMbmBlackbox_welcomeWelc_01;
+    bmpto = EMbmBlackbox_welcomeLastElement;
+    bmpfile = BLACKBOX_WELCOME_ICON_FILE;
+    frame_array =         
+        {
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_01;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_02;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_03;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_04;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_05;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_06;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_07;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_08;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_09;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_10;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_11;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_12;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_13;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_14;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_15;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_16;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_17;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_18;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_19;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_20;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_21;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_22;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_23;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_24;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_25;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_26;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_27;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_28;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_29;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_30;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_31;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            },
+        ANIMATION_FRAME
+            {
+            bmpid = EMbmBlackbox_welcomeWelc_32;
+            bmpmask = EMbmBlackbox_welcomeWelc_mask;
+            }
+        };
+    }
+
+// -----------------------------------------------------------------------------
+//      r_blackbox_slider_time_text
+// -----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_blackbox_slider_time_text
+    {
+    buf = "%N";
+    }
+
+// -----------------------------------------------------------------------------
+//      r_blackbox_welc_greeting_text1
+// -----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_blackbox_welc_greeting_text1
+    {
+    buf = "Hello, guys, \nWelcome to enjoy BlackBox�board game! It's very funny and free!\n\n";
+    }
+
+// -----------------------------------------------------------------------------
+//      r_blackbox_welc_greeting_text2
+// -----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_blackbox_welc_greeting_text2
+    {
+    buf = "For more information, please refer to our Tips & Tricks or Help contents.";
+    }
+
+// -----------------------------------------------------------------------------
+//      r_blackbox_firsttimeuse_title
+// -----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_blackbox_firsttimeuse_title
+    {
+    buf = "Introduction";
+    }
+
+// -----------------------------------------------------------------------------
+//      r_blackbox_firsttimeuse_contents
+// -----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_blackbox_firsttimeuse_contents
+    {
+    buf = "The purpose of the game is to use deductive reasoning to determine the location of 3 to 5 balls placed unseen within an 8-by-8 grid.\n";
+    }
+
+// -----------------------------------------------------------------------------
+//      r_blackbox_firsttimeuse_link
+// -----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_blackbox_firsttimeuse_link
+    {
+    buf = "<a>Click here to getting more info.</a>";
+    }
+
+// End of File
